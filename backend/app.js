@@ -30,4 +30,7 @@ app.use("/api/v1",payment)
 
 app.use(errorHandleMiddleware)
 dotenv.config({path:'backend/config/config.env'})
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
 export default app;
