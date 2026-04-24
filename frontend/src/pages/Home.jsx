@@ -30,6 +30,7 @@ function Home() {
  :( <>
     <PageTitle title="Home-My Website"/>
     <Navbar/>
+    <h1>Hello world</h1>
     <ImageSlider/>
       <div className="home-container">
         <h2 className="home-heading">Trending Now</h2>
