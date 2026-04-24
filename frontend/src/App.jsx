@@ -42,6 +42,11 @@ function App() {
     }
   },[dispatch])
   
+  useEffect(() => {
+    console.log("API URL:", import.meta.env.VITE_API_URL); // Log the API URL to verify it's correct
+  
+  }, []);
+  
   return (
    <Router>
     <Routes>
