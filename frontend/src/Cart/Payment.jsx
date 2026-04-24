@@ -5,7 +5,9 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CheckoutPath from './CheckoutPath';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+const API=import.meta.env.VITE_APP_URL;
+
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -16,10 +18,10 @@ function Payment() {
     const navigate=useNavigate();
     const completePayment=async(amount)=>{
       try{
-    const {data:keyData}=await axios.get('/api/v1/getKey');
+    const {data:keyData}=await axios.get(`${API}/getKey`);
     const {key}=keyData;
     
-    const {data:orderData}=await axios.post('/api/v1/payment/process'  ,{amount});
+    const {data:orderData}=await axios.post(`${API}/payment/process`  ,{amount});
     const {order}=orderData
 
     const options = {
@@ -30,7 +32,7 @@ function Payment() {
       description: 'Ecommerce Website Payment Transaction',
       order_id: order.id,
       handler:async function(response){
-        const {data}=await axios.post('/api/v1/paymentVerification',{
+        const {data}=await axios.post(`${API}/payment/verification`,{
           razorpay_payment_id:response.razorpay_payment_id,
           razorpay_order_id:response.razorpay_order_id,
           razorpay_signature:response.razorpay_signature
