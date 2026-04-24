@@ -28,6 +28,11 @@ app.use("/api/v1",user)
 app.use("/api/v1",order)
 app.use("/api/v1",payment)
 
+useEffect(() => {
+  console.log("API URL:", import.meta.env.VITE_API_URL); // Log the API URL to verify it's correct
+
+}, []);
+
 app.use(errorHandleMiddleware)
 dotenv.config({path:'backend/config/config.env'})
 app.get("/", (req, res) => {
