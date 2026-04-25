@@ -7,6 +7,8 @@ import errorHandleMiddleware  from './middleware/error.js';
 import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
 import dotenv from 'dotenv'
+import cors from "cors";
+
 // import fileUpload from "express-fileupload";
 
 
@@ -32,6 +34,12 @@ app.use("/api/v1",payment)
 
 app.use(errorHandleMiddleware)
 dotenv.config({path:'backend/config/config.env'})
+
+app.use(cors({
+  origin: "https://shopsphere-frontend-sigma.vercel.app",
+  credentials: true
+}));
+
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
