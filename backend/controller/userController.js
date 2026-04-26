@@ -6,28 +6,45 @@ import { sendToken } from "../utils/jwtToken.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import { v2 as cloudinary } from "cloudinary";
 
-export const registerUser =(async (req, res, next) => {
-   const {name,email,password}=req.body;
-    const myCloud= await cloudinary.uploader.upload(req.files.avatar.tempFilePath,{
-        folder:'avatars',
-        width:150,
-        crop:'scale'
-    })
-    if(!email || !password){
-        return next(new HandleError("Email or password cannot be empty",400))
-    }
-    const user=await User.create({
-        name,
-        email,
-        password,
-        avatar:{
-            public_id:myCloud.public_id,
-            url:myCloud.secure_url
+export const registerUser = async (req, res, next) => {
+  try {
+    const { name, email, password } = req.body;
 
+    if (!email || !password) {
+      return next(new HandleError("Email or password cannot be empty", 400));
+    }
+
+    let avatarData = {
+      public_id: "default",
+      url: "https://res.cloudinary.com/demo/image/upload/default.png",
+    };
+
+    if (req.files && req.files.avatar) {
+      const myCloud = await cloudinary.uploader.upload(
+        req.files.avatar.tempFilePath,
+        {
+          folder: "avatars",
         }
-    })
-    sendToken(user,201,res)
-});
+      );
+
+      avatarData = {
+        public_id: myCloud.public_id,
+        url: myCloud.secure_url,
+      };
+    }
+
+    const user = await User.create({
+      name,
+      email,
+      password,
+      avatar: avatarData,
+    });
+
+    sendToken(user, 201, res);
+  } catch (error) {
+    return next(error);
+  }
+};
 
 // Login
 export const loginUser = handleAsyncError(async (req, res, next) => {
