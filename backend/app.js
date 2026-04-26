@@ -1,3 +1,7 @@
+import dotenv from 'dotenv'
+app.use(express.urlencoded({ extended: true }));
+
+
 import express from 'express';
 import product from './routes/productRoutes.js';
 import user from './routes/userRoutes.js';
@@ -6,7 +10,6 @@ import payment from './routes/paymentRoutes.js';
 import errorHandleMiddleware  from './middleware/error.js';
 import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
-import dotenv from 'dotenv'
 import cors from "cors";
 
 // import fileUpload from "express-fileupload";
@@ -26,7 +29,6 @@ app.use(fileUpload({
     tempFileDir: "/tmp/"
 }));
 // app.use(fileUpload())
-app.use(express.urlencoded({ extended: true }));
 
 // Route
 app.use("/api/v1",product)
