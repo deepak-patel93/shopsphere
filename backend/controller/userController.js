@@ -7,12 +7,11 @@ import { sendEmail } from "../utils/sendEmail.js";
 import { v2 as cloudinary } from "cloudinary";
 
 export const registerUser = async (req, res, next) => {
-  try {
     const { name, email, password } = req.body;
 
-    if (!email || !password) {
-      return next(new HandleError("Email or password cannot be empty", 400));
-    }
+    // if (!email || !password) {
+    //   return next(new HandleError("Email or password cannot be empty", 400));
+    // }
 
     let avatarData = {
       public_id: "default",
@@ -41,10 +40,7 @@ export const registerUser = async (req, res, next) => {
     });
 
     sendToken(user, 201, res);
-  } catch (error) {
-    return next(error);
   }
-};
 
 // Login
 export const loginUser = handleAsyncError(async (req, res, next) => {
