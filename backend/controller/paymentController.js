@@ -1,7 +1,7 @@
 import handleAsyncError from "../middleware/handleAsyncError.js";
 import { instance } from "../server.js";
 import crypto from "crypto";
-export const processPayment = handleAsyncError(async (req, res) => {
+export const processPayment = handleAsyncError(async (req, res,next) => {
   const options = {
     amount: Number(req.body.amount * 100),
     currency: "INR",
