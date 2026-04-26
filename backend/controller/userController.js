@@ -6,7 +6,7 @@ import { sendToken } from "../utils/jwtToken.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import { v2 as cloudinary } from "cloudinary";
 
-export const registerUser = async (req, res, next) => {
+export const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
 
     // if (!email || !password) {
