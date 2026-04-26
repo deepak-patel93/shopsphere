@@ -20,7 +20,8 @@ export const createProduct=createAsyncThunk('admin/createProduct',async(productD
         const config={
             headers:{
                 'Content-Type':'multipart/form-data'
-            }
+            },
+            withCredentials:true
         }
       
         const {data}=await axios.post(`${API}/admin/product/create`,productData,config)
