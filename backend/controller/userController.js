@@ -7,10 +7,26 @@ import { sendEmail } from "../utils/sendEmail.js";
 import { v2 as cloudinary } from "cloudinary";
 
 export const registerUser = handleAsyncError(async (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    message: "Test working",
-  });
+   const {name,email,password}=req.body;
+    const myCloud= await cloudinary.uploader.upload(req.files.avatar.tempFilePath,{
+        folder:'avatars',
+        width:150,
+        crop:'scale'
+    })
+       if(!email || !password){
+        return next(new HandleError("Email or password cannot be empty",400))
+    }
+    const user=await User.create({
+        name,
+        email,
+        password,
+        avatar:{
+            public_id:myCloud.public_id,
+            url:myCloud.secure_url
+
+        }
+    })
+    sendToken(user,201,res)
 });
 
 // Login
