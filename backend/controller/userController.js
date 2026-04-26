@@ -6,7 +6,7 @@ import { sendToken } from '../utils/jwtToken.js';
 import { sendEmail } from '../utils/sendEmail.js';
 import {v2 as cloudinary} from 'cloudinary';
 
-export const registerUser=async(req,res)=>{
+export const registerUser=handleAsyncError(async(req , res , next)=>{
     const {name,email,password}=req.body;
     const myCloud= await cloudinary.uploader.upload(req.files.avatar.tempFilePath,{
         folder:'avatars',
@@ -24,7 +24,7 @@ export const registerUser=async(req,res)=>{
         }
     })
     sendToken(user,201,res)
-}
+})
 
 // Login
 export const loginUser=handleAsyncError(async(req , res, next)=>{
