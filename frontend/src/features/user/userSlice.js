@@ -30,6 +30,7 @@ export const login = createAsyncThunk(
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
       };
       const { data } = await axios.post(
         `${API}/login`,
