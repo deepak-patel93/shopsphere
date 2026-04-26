@@ -1,4 +1,6 @@
 import dotenv from 'dotenv'
+dotenv.config({path:'backend/config/config.env'})
+
 import express from 'express';
 import product from './routes/productRoutes.js';
 import user from './routes/userRoutes.js';
@@ -13,12 +15,13 @@ import cors from "cors";
 
 
 const app=express();
+app.use(express.urlencoded({ extended: true }));
+
 
 app.use(cors({
   origin: "https://shopsphere-frontend-sigma.vercel.app",
   credentials: true
 }));
-app.use(express.urlencoded({ extended: true }));
 
 
 // Middleware
@@ -39,7 +42,6 @@ app.use("/api/v1",payment)
 
 
 app.use(errorHandleMiddleware)
-dotenv.config({path:'backend/config/config.env'})
 
 
 
