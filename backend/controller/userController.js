@@ -13,6 +13,9 @@ export const registerUser=handleAsyncError(async(req,res,next)=>{
         width:150,
         crop:'scale'
     })
+       if(!email || !password){
+        return next(new HandleError("Email or password cannot be empty",400))
+    }
     const user=await User.create({
         name,
         email,
