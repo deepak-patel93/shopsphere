@@ -36,6 +36,9 @@ app.use("/api/v1",product)
 app.use("/api/v1",user)
 app.use("/api/v1",order)
 app.use("/api/v1",payment)
+app.get("/",(req,res)=>{
+    res.send("Server is running")
+});
 
 app.use(errorHandleMiddleware)
 export default app;
