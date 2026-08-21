@@ -80,15 +80,21 @@
     margin-right: 10px;
   }
   
-  .quantity-button {
-    width: 35px;
-    height: 15px;
-    border: 1px solid #D5D9D9;
-    background: linear-gradient(to bottom, #20b5c8, #E7E9EC);
-    cursor: pointer;
-    font-size: 58px;
-    border-radius: 4px;
-  }
+.quantity-button {
+  width: 35px;
+  height: 35px;              /* height thodi badhai, 15px bahut chhota tha */
+  border: 1px solid #D5D9D9;
+  background: linear-gradient(to bottom, #20b5c8, #E7E9EC);
+  cursor: pointer;
+  color: red;
+  font-size: 26px;           /* 40px se 16px kiya */
+  line-height: 1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
   
   
   .quantity-value {

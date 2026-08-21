@@ -101,7 +101,7 @@
 /* Links text */
 .form-links {
   margin-top: 12px;
-  font-size: 13px;
+  font-size: 20px;
   color: white;
   text-align: center;
 }
@@ -116,6 +116,7 @@
 /* Hover link */
 .form-links a:hover {
   text-decoration: underline;
+  /* font-size: 14px; */
 }
 /* Full page background */
 .container.forgot-container {
@@ -224,4 +225,25 @@
 .authBtn:hover {
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(255, 81, 47, 0.6);
+}
+.avatar-group {
+  /* display: flex; */
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.avatar-group .file-input {
+  flex: 1;
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  margin-top: 10px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 2px solid #ddd;
+  flex-shrink: 0;
+  display: block;
 }

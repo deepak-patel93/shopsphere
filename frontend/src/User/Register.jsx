@@ -15,7 +15,7 @@ function Register() {
     password: "",
   });
   const [avatar, setAvatar] = useState("");
-  const [avatarPreview, setAvatarPreview] = useState("./images/profile.png");
+  const [avatarPreview, setAvatarPreview] = useState("./user.png");
   const { name, email, password } = user;
   const { success, loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -106,7 +106,7 @@ function Register() {
               onChange={registerDataChange}
             />
           </div>
-          <div className="input-group avatar-group">
+          <div className="avatar-group">
             <input
               type="file"
               name="avatar"
@@ -114,7 +114,7 @@ function Register() {
               accept="image/"
               onChange={registerDataChange}
             />
-            <img src={avatarPreview} alt="Avatar Preview" className="avatar" />
+            <img src={avatarPreview} alt="Avatar" className="avatar" />
           </div>
           <button className="authBtn">
             {loading ? "Signing Up" : "Sign Up"}
